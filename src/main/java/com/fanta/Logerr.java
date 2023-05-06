@@ -1,4 +1,4 @@
-package com.fanta.moneywithsoul;
+package com.fanta;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
