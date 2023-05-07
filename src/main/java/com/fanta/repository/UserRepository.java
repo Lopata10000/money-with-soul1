@@ -1,32 +1,45 @@
 package com.fanta.repository;
 
-import com.fanta.model.User;
-
+import com.fanta.entity.User;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UserRepository implements Repository<User>{
+public class UserRepository implements Repository<User> {
+    private List<User> userList = new ArrayList<>();
+
     @Override
     public List<User> getAll() {
-        return null;
+        return userList;
     }
-
 
     @Override
     public Optional<User> getById(Long id) {
-        // implementation
-        return null;
+        return userList.stream().filter(user -> user.getUserId().equals(id)).findFirst();
     }
 
     @Override
-    public User save(User user) {
-        // implementation
-        return null;
+    public User update(User user) {
+        Optional<User> existingUser = getById(user.getUserId());
+        if (existingUser.isPresent()) {
+            int index = userList.indexOf(existingUser.get());
+            userList.set(index, user);
+        } else {
+            throw new RuntimeException("Person with ID " + user.getUserId() + " not found");
+        }
+        return user;
+    }
+
+    @Override
+    public void add(User user) {
+        if (getById(user.getUserId()).isPresent()) {
+            throw new RuntimeException("Person with ID " + user.getUserId() + " already exists");
+        }
+        userList.add(user);
     }
 
     @Override
     public void delete(User user) {
-        // implementation
+        userList.remove(user);
     }
 }
-

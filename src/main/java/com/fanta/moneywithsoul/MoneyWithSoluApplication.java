@@ -1,7 +1,8 @@
 package com.fanta.moneywithsoul;
 
 import static com.fanta.database.MigrationFlyway.migrationWihFlyway;
-import static com.fanta.database.PoolConfig.dataSource;
+
+import com.fanta.database.PoolConfig;
 
 // @SpringBootApplication
 public class MoneyWithSoluApplication {
@@ -9,6 +10,7 @@ public class MoneyWithSoluApplication {
     public static void main(String[] args) {
         //        SpringApplication.run(MoneyWithSoluApplication.class, args);
         migrationWihFlyway();
-        dataSource();
+        PoolConfig.Test();
+
     }
 }

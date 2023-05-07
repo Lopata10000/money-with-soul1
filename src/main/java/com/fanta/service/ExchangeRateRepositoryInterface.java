@@ -1,13 +1,17 @@
 package com.fanta.service;
 
-import com.fanta.model.ExchangeRate;
-
+import com.fanta.entity.ExchangeRate;
 import java.util.List;
 import java.util.Optional;
 
 public interface ExchangeRateRepositoryInterface {
-    Optional<ExchangeRate> findById(Long exchangeId);
-    List<ExchangeRate> findAll();
-    ExchangeRate save(ExchangeRate exchangeRate);
+    Optional<ExchangeRate> getById(Long exchangeId);
+
+    List<ExchangeRate> getAll();
+
+    ExchangeRate add(ExchangeRate exchangeRate);
+
+    ExchangeRate update(ExchangeRate exchangeRate);
+
     void delete(ExchangeRate exchangeRate);
 }

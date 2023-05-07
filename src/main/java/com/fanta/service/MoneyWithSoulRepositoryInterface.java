@@ -8,8 +8,11 @@ import com.fanta.repository.EarningRepository;
 import com.fanta.repository.ExchangeRateRepository;
 import com.fanta.repository.PlanningCostRepository;
 import com.fanta.repository.TransactionRepository;
+import com.fanta.repository.UserRepository;
 
 public interface MoneyWithSoulRepositoryInterface {
+    UserRepository getUserRepository();
+
     ExchangeRateRepository getExchangeRateRepository();
 
     TransactionRepository getTransactionRepository();
@@ -25,5 +28,4 @@ public interface MoneyWithSoulRepositoryInterface {
     EarningRepository getEarningRepository();
 
     PlanningCostRepository getPlanningCostRepository();
-
 }

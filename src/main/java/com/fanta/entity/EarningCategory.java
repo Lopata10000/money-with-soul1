@@ -1,4 +1,4 @@
-package com.fanta.model;
+package com.fanta.entity;
 
 public class EarningCategory {
     private Long earningCategoryId;

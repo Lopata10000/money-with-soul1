@@ -1,4 +1,4 @@
-package com.fanta.model;
+package com.fanta.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -97,5 +97,5 @@ public class PlanningCost {
         this.plannedAmount = plannedAmount;
     }
 
-// Getters and setters
+    // Getters and setters
 }

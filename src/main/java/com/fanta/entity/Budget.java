@@ -1,4 +1,4 @@
-package com.fanta.model;
+package com.fanta.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -52,6 +52,7 @@ public class Budget {
             return budget;
         }
     }
+
     public void setBudgetId(Long budgetId) {
         this.budgetId = budgetId;
     }

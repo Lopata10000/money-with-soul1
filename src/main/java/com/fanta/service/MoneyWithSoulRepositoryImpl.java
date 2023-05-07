@@ -8,8 +8,10 @@ import com.fanta.repository.EarningRepository;
 import com.fanta.repository.ExchangeRateRepository;
 import com.fanta.repository.PlanningCostRepository;
 import com.fanta.repository.TransactionRepository;
+import com.fanta.repository.UserRepository;
 
 public class MoneyWithSoulRepositoryImpl implements MoneyWithSoulRepositoryInterface {
+    private UserRepository userRepository;
     private ExchangeRateRepository exchangeRateRepository;
     private TransactionRepository transactionRepository;
     private BudgetRepository budgetRepository;
@@ -19,16 +21,21 @@ public class MoneyWithSoulRepositoryImpl implements MoneyWithSoulRepositoryInter
     private EarningRepository earningRepository;
     private PlanningCostRepository planningCostRepository;
 
-
     public MoneyWithSoulRepositoryImpl() {
-        exchangeRateRepository = new ExchangeRateRepositoryImpl();
-        transactionRepository = new TransactionRepositoryImpl();
-        budgetRepository = new BudgetRepositoryImpl();
-        costCategoryRepository = new CostCategoryRepositoryImpl();
-        earningCategoryRepository = new EarningCategoryRepositoryImpl();
-        costRepository = new CostRepositoryImpl();
-        earningRepository = new EarningRepositoryImpl();
-        planningCostRepository = new PlanningCostRepositoryImpl();
+        userRepository = new UserRepository();
+        exchangeRateRepository = new ExchangeRateRepository();
+        transactionRepository = new TransactionRepository();
+        budgetRepository = new BudgetRepository();
+        costCategoryRepository = new CostCategoryRepository();
+        earningCategoryRepository = new EarningCategoryRepository();
+        costRepository = new CostRepository();
+        earningRepository = new EarningRepository();
+        planningCostRepository = new PlanningCostRepository();
+    }
+
+    @Override
+    public UserRepository getUserRepository() {
+        return userRepository;
     }
 
     @Override
@@ -71,8 +78,3 @@ public class MoneyWithSoulRepositoryImpl implements MoneyWithSoulRepositoryInter
         return planningCostRepository;
     }
 }
-
-
-
-
-

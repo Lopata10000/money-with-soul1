@@ -1,12 +1,17 @@
 package com.fanta.service;
 
-import com.fanta.model.User;
-
+import com.fanta.entity.User;
+import java.util.List;
 import java.util.Optional;
 
 public interface UserRepositoryInterface {
-    Optional<User> findById(Long userId);
-    Optional<User> findByEmail(String email);
-    User save(User user);
+    Optional<User> getById(Long userId);
+
+    List<User> getAll();
+
+    User add(User user);
+
+    User update(User user);
+
     void delete(User user);
 }

@@ -1,4 +1,4 @@
-package com.fanta.model;
+package com.fanta.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

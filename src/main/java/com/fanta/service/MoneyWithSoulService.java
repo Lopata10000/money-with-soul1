@@ -1,15 +1,16 @@
 package com.fanta.service;
 
-import com.fanta.model.Budget;
-import com.fanta.model.Cost;
-import com.fanta.model.CostCategory;
-import com.fanta.model.Earning;
-import com.fanta.model.EarningCategory;
-import com.fanta.model.ExchangeRate;
-import com.fanta.model.PlanningCost;
-import com.fanta.model.Transaction;
-
+import com.fanta.entity.Budget;
+import com.fanta.entity.Cost;
+import com.fanta.entity.CostCategory;
+import com.fanta.entity.Earning;
+import com.fanta.entity.EarningCategory;
+import com.fanta.entity.ExchangeRate;
+import com.fanta.entity.PlanningCost;
+import com.fanta.entity.Transaction;
+import com.fanta.entity.User;
 import java.util.List;
+import java.util.Optional;
 
 public class MoneyWithSoulService {
     private MoneyWithSoulRepositoryInterface repository;
@@ -18,12 +19,24 @@ public class MoneyWithSoulService {
         repository = new MoneyWithSoulRepositoryImpl();
     }
 
-    public void addExchangeRate(ExchangeRate exchangeRate) {
-        repository.getExchangeRateRepository().add(exchangeRate);
+    public Optional<User> getUser(int id) {
+        return repository.getUserRepository().getById((long) id);
     }
 
-    public ExchangeRate getExchangeRate(int id) {
-        return repository.getExchangeRateRepository().getById(id);
+    public void addUser(User user) {
+        repository.getUserRepository().add(user);
+    }
+
+    public void updateUser(User user) {
+        repository.getUserRepository().update(user);
+    }
+
+    public void deleteUser(User user) {
+        repository.getUserRepository().delete(user);
+    }
+
+    public Optional<ExchangeRate> getExchange(int id) {
+        return repository.getExchangeRateRepository().getById((long) id);
     }
 
     public void updateExchangeRate(ExchangeRate exchangeRate) {
@@ -38,8 +51,8 @@ public class MoneyWithSoulService {
         repository.getTransactionRepository().add(transaction);
     }
 
-    public Transaction getTransaction(int id) {
-        return repository.getTransactionRepository().getById(id);
+    public Optional<Transaction> getTransaction(int id) {
+        return repository.getTransactionRepository().getById((long) id);
     }
 
     public void updateTransaction(Transaction transaction) {
@@ -54,8 +67,8 @@ public class MoneyWithSoulService {
         repository.getBudgetRepository().add(budget);
     }
 
-    public Budget getBudget(int id) {
-        return repository.getBudgetRepository().getById(id);
+    public Optional<Budget> getBudget(int id) {
+        return repository.getBudgetRepository().getById((long) id);
     }
 
     public void updateBudget(Budget budget) {
@@ -70,8 +83,8 @@ public class MoneyWithSoulService {
         repository.getCostCategoryRepository().add(costCategory);
     }
 
-    public CostCategory getCostCategory(int id) {
-        return repository.getCostCategoryRepository().getById(id);
+    public Optional<CostCategory> getCostCategory(int id) {
+        return repository.getCostCategoryRepository().getById((long) id);
     }
 
     public void updateCostCategory(CostCategory costCategory) {
@@ -86,8 +99,8 @@ public class MoneyWithSoulService {
         repository.getEarningCategoryRepository().add(earningCategory);
     }
 
-    public EarningCategory getEarningCategory(int id) {
-        return repository.getEarningCategoryRepository().getById(id);
+    public Optional<EarningCategory> getEarningCategory(int id) {
+        return repository.getEarningCategoryRepository().getById((long) id);
     }
 
     public void updateEarningCategory(EarningCategory earningCategory) {
@@ -102,8 +115,8 @@ public class MoneyWithSoulService {
         repository.getCostRepository().add(cost);
     }
 
-    public Cost getCost(int id) {
-        return repository.getCostRepository().getById(id);
+    public Optional<Cost> getCost(int id) {
+        return repository.getCostRepository().getById((long) id);
     }
 
     public void updateCost(Cost cost) {
@@ -118,8 +131,8 @@ public class MoneyWithSoulService {
         repository.getEarningRepository().add(earning);
     }
 
-    public Earning getEarning(int id) {
-        return repository.getEarningRepository().getById(id);
+    public Optional<Earning> getEarning(int id) {
+        return repository.getEarningRepository().getById((long) id);
     }
 
     public void updateEarning(Earning earning) {
@@ -134,8 +147,8 @@ public class MoneyWithSoulService {
         repository.getPlanningCostRepository().add(planningCost);
     }
 
-    public PlanningCost getPlanningCost(int id) {
-        return repository.getPlanningCostRepository().getById(id);
+    public Optional<PlanningCost> getPlanningCost(int id) {
+        return repository.getPlanningCostRepository().getById((long) id);
     }
 
     public void updatePlanningCost(PlanningCost planningCost) {
@@ -177,5 +190,4 @@ public class MoneyWithSoulService {
     public List<PlanningCost> getAllPlanningCosts() {
         return repository.getPlanningCostRepository().getAll();
     }
-
 }

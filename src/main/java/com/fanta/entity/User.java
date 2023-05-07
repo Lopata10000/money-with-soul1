@@ -1,4 +1,4 @@
-package com.fanta.model;
+package com.fanta.entity;
 
 import java.time.LocalDateTime;
 
@@ -9,7 +9,7 @@ public class User {
     private String email;
     private String passwordHash;
     private LocalDateTime registeredAt;
-    private UserStatus userStatus;
+    private String userStatus;
 
     public static class Builder {
         private final User user = new User();
@@ -44,7 +44,7 @@ public class User {
             return this;
         }
 
-        public Builder userStatus(UserStatus userStatus) {
+        public Builder userStatus(String userStatus) {
             user.setUserStatus(userStatus);
             return this;
         }
@@ -52,8 +52,8 @@ public class User {
         public User build() {
             return user;
         }
-
     }
+
     public Long getUserId() {
         return userId;
     }
@@ -102,12 +102,11 @@ public class User {
         this.registeredAt = registeredAt;
     }
 
-    public UserStatus getUserStatus() {
+    public String getUserStatus() {
         return userStatus;
     }
 
-    public void setUserStatus(UserStatus userStatus) {
+    public void setUserStatus(String userStatus) {
         this.userStatus = userStatus;
     }
-
 }
