@@ -1,4 +1,4 @@
-//module com.fanta.moneywithsoul {
+// module com.fanta.moneywithsoul {
 ////    requires javafx.controls;
 ////    requires javafx.fxml;
 //    requires org.slf4j;
@@ -10,4 +10,4 @@
 //    opens com.fanta to
 //            javafx.fxml;
 //
-//}
+// }
