@@ -19,7 +19,7 @@ public class UserRepository implements Repository<User> {
     }
 
     @Override
-    public User update(User user) {
+    public  User update(User user) {
         Optional<User> existingUser = getById(user.getUserId());
         if (existingUser.isPresent()) {
             int index = userList.indexOf(existingUser.get());
@@ -32,8 +32,8 @@ public class UserRepository implements Repository<User> {
 
     @Override
     public void add(User user) {
-        if (getById(user.getUserId()).isPresent()) {
-            throw new RuntimeException("Person with ID " + user.getUserId() + " already exists");
+        if ((user.getEmail()).equals(this)) {
+            throw new RuntimeException("Person already exists");
         }
         userList.add(user);
     }
