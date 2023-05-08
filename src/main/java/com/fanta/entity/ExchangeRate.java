@@ -1,34 +1,26 @@
 package com.fanta.entity;
 
 import java.math.BigDecimal;
-
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
+@Table(name = "exchange_rates")
 public class ExchangeRate {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "exchange_id")
     private Long exchangeId;
+
+    @Column(name = "name_currency")
     private String nameCurrency;
+
+    @Column(name = "rate")
     private BigDecimal rate;
-
-    public static class Builder {
-        private final ExchangeRate exchangeRate = new ExchangeRate();
-
-        public Builder exchangeId(Long exchangeId) {
-            exchangeRate.setExchangeId(exchangeId);
-            return this;
-        }
-
-        public Builder nameCurrency(String nameCurrency) {
-            exchangeRate.setNameCurrency(nameCurrency);
-            return this;
-        }
-
-        public Builder rate(BigDecimal rate) {
-            exchangeRate.setRate(rate);
-            return this;
-        }
-
-        public ExchangeRate build() {
-            return exchangeRate;
-        }
-    }
 
     public Long getExchangeId() {
         return exchangeId;
@@ -53,5 +45,4 @@ public class ExchangeRate {
     public void setRate(BigDecimal rate) {
         this.rate = rate;
     }
-    // Getters and setters
 }

@@ -1,64 +1,54 @@
 package com.fanta.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.security.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+@Table(name = "costs")
 public class Cost {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cost_id")
     private Long costId;
-    private Long userId;
-    private Long costCategoryId;
-    private Long budgetId;
-    private Long transactionId;
-    private LocalDateTime costDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cost_category_id")
+    private CostCategory costCategory;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "budget_id")
+    private Budget budget;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "transaction_id")
+    private Transaction transaction;
+
+    @Column(name = "cost_date")
+    private Timestamp costDate;
+
+    @Column(name = "cost_amount")
     private BigDecimal costAmount;
+
+    @Column(name = "cost_description")
     private String costDescription;
 
-    public static class Builder {
-        private final Cost cost = new Cost();
-
-        public Builder costId(Long costId) {
-            cost.setCostId(costId);
-            return this;
-        }
-
-        public Builder userId(Long userId) {
-            cost.setUserId(userId);
-            return this;
-        }
-
-        public Builder costCategoryId(Long costCategoryId) {
-            cost.setCostCategoryId(costCategoryId);
-            return this;
-        }
-
-        public Builder budgetId(Long budgetId) {
-            cost.setBudgetId(budgetId);
-            return this;
-        }
-
-        public Builder transactionId(Long transactionId) {
-            cost.setTransactionId(transactionId);
-            return this;
-        }
-
-        public Builder costDate(LocalDateTime costDate) {
-            cost.setCostDate(costDate);
-            return this;
-        }
-
-        public Builder costAmount(BigDecimal costAmount) {
-            cost.setCostAmount(costAmount);
-            return this;
-        }
-
-        public Builder costDescription(String costDescription) {
-            cost.setCostDescription(costDescription);
-            return this;
-        }
-
-        public Cost build() {
-            return cost;
-        }
+    public Cost() {
     }
 
     public Long getCostId() {
@@ -69,43 +59,43 @@ public class Cost {
         this.costId = costId;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getCostCategoryId() {
-        return costCategoryId;
+    public CostCategory getCostCategory() {
+        return costCategory;
     }
 
-    public void setCostCategoryId(Long costCategoryId) {
-        this.costCategoryId = costCategoryId;
+    public void setCostCategory(CostCategory costCategory) {
+        this.costCategory = costCategory;
     }
 
-    public Long getBudgetId() {
-        return budgetId;
+    public Budget getBudget() {
+        return budget;
     }
 
-    public void setBudgetId(Long budgetId) {
-        this.budgetId = budgetId;
+    public void setBudget(Budget budget) {
+        this.budget = budget;
     }
 
-    public Long getTransactionId() {
-        return transactionId;
+    public Transaction getTransaction() {
+        return transaction;
     }
 
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
     }
 
-    public LocalDateTime getCostDate() {
+    public Timestamp getCostDate() {
         return costDate;
     }
 
-    public void setCostDate(LocalDateTime costDate) {
+    public void setCostDate(Timestamp costDate) {
         this.costDate = costDate;
     }
 

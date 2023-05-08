@@ -1,5 +1,9 @@
 package com.fanta.database;
 
+import com.fanta.entity.User;
+import com.fanta.service.MoneyWithSoulRepositoryImpl;
+import com.fanta.service.MoneyWithSoulRepositoryInterface;
+import com.fanta.service.MoneyWithSoulService;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import javax.sql.DataSource;
@@ -7,7 +11,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 @Configuration
 public class PoolConfig implements DataBaseConfig {
@@ -27,15 +33,16 @@ public class PoolConfig implements DataBaseConfig {
 
 
     public static void Test() {
-
-        try (Connection connection = dataSource.getConnection()) {
-            if (connection != null) {
-                System.out.println("Успішно створено пулл");
-            } else {
-                System.out.println("Не створено пул");
-            }
-        } catch (SQLException exception) {
-            System.out.println("помилка");
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            Statement statement = connection.createStatement();
+            MoneyWithSoulRepositoryInterface repository = new MoneyWithSoulRepositoryImpl();
+            MoneyWithSoulService moneyWithSoulService = new MoneyWithSoulService();
+            User user1 = new User();
+            user1.setEmail("Georg");
+            moneyWithSoulService.addUser(user1);
+            System.out.println("User created successfully.");
+        } catch (SQLException e) {
+            System.err.println("User creation failed: " + e.getMessage());
         }
     }
 

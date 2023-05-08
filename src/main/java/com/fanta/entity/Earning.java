@@ -1,59 +1,48 @@
 package com.fanta.entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.security.Timestamp;
 
+@Entity
+@Table(name = "earnings")
 public class Earning {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "earning_id")
     private Long earningId;
-    private Long userId;
-    private Long earningCategoryId;
-    private LocalDateTime earningDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "earning_category_id")
+    private EarningCategory earningCategory;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "transaction_id")
+    private Transaction transaction;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "budget_id")
+    private Budget budget;
+
+    @Column(name = "earning_date")
+    private Timestamp earningDate;
+
+    @Column(name = "earning_amount")
     private BigDecimal earningAmount;
-    private Long transactionId;
-    private Long budgetId;
-
-    public static class Builder {
-        private final Earning earning = new Earning();
-
-        public Builder earningId(Long earningId) {
-            earning.setEarningId(earningId);
-            return this;
-        }
-
-        public Builder userId(Long userId) {
-            earning.setUserId(userId);
-            return this;
-        }
-
-        public Builder earningCategoryId(Long earningCategoryId) {
-            earning.setEarningCategoryId(earningCategoryId);
-            return this;
-        }
-
-        public Builder earningDate(LocalDateTime earningDate) {
-            earning.setEarningDate(earningDate);
-            return this;
-        }
-
-        public Builder earningAmount(BigDecimal earningAmount) {
-            earning.setEarningAmount(earningAmount);
-            return this;
-        }
-
-        public Builder transactionId(Long transactionId) {
-            earning.setTransactionId(transactionId);
-            return this;
-        }
-
-        public Builder budgetId(Long budgetId) {
-            earning.setBudgetId(budgetId);
-            return this;
-        }
-
-        public Earning build() {
-            return earning;
-        }
-    }
 
     public Long getEarningId() {
         return earningId;
@@ -63,27 +52,43 @@ public class Earning {
         this.earningId = earningId;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getEarningCategoryId() {
-        return earningCategoryId;
+    public EarningCategory getEarningCategory() {
+        return earningCategory;
     }
 
-    public void setEarningCategoryId(Long earningCategoryId) {
-        this.earningCategoryId = earningCategoryId;
+    public void setEarningCategory(EarningCategory earningCategory) {
+        this.earningCategory = earningCategory;
     }
 
-    public LocalDateTime getEarningDate() {
+    public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
+
+    public Budget getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Budget budget) {
+        this.budget = budget;
+    }
+
+    public Timestamp getEarningDate() {
         return earningDate;
     }
 
-    public void setEarningDate(LocalDateTime earningDate) {
+    public void setEarningDate(Timestamp earningDate) {
         this.earningDate = earningDate;
     }
 
@@ -94,21 +99,4 @@ public class Earning {
     public void setEarningAmount(BigDecimal earningAmount) {
         this.earningAmount = earningAmount;
     }
-
-    public Long getTransactionId() {
-        return transactionId;
-    }
-
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
-    }
-
-    public Long getBudgetId() {
-        return budgetId;
-    }
-
-    public void setBudgetId(Long budgetId) {
-        this.budgetId = budgetId;
-    }
 }
-// Getters and setters

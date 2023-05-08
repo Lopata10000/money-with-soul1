@@ -1,61 +1,45 @@
 package com.fanta.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.security.Timestamp;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
+@Table(name = "transactions")
 public class Transaction {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "transaction_id")
     private Long transactionId;
-    private Long userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "transaction_type")
     private String transactionType;
-    private LocalDateTime transactionDate;
+
+    @Column(name = "transaction_date")
+    private Timestamp transactionDate;
+
+    @Column(name = "transaction_amount")
     private BigDecimal transactionAmount;
+
+    @Column(name = "description")
     private String description;
-    private Long exchangeId;
 
-    public static class Builder {
-        private final Transaction transaction = new Transaction();
-
-        public Builder transactionId(Long transactionId) {
-            transaction.setTransactionId(transactionId);
-            return this;
-        }
-
-        public Builder userId(Long userId) {
-            transaction.setUserId(userId);
-            return this;
-        }
-
-        public Builder transactionType(String transactionType) {
-            transaction.setTransactionType(transactionType);
-            return this;
-        }
-
-        public Builder transactionDate(LocalDateTime transactionDate) {
-            transaction.setTransactionDate(transactionDate);
-            return this;
-        }
-
-        public Builder transactionAmount(BigDecimal transactionAmount) {
-            transaction.setTransactionAmount(transactionAmount);
-            return this;
-        }
-
-        public Builder description(String description) {
-            transaction.setDescription(description);
-            return this;
-        }
-
-        public Builder exchangeId(Long exchangeId) {
-            transaction.setExchangeId(exchangeId);
-            return this;
-        }
-
-        public Transaction build() {
-            return transaction;
-        }
-    }
-
-    // Getters and setters
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exchange_id")
+    private ExchangeRate exchangeRate;
 
     public Long getTransactionId() {
         return transactionId;
@@ -65,12 +49,12 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTransactionType() {
@@ -81,11 +65,11 @@ public class Transaction {
         this.transactionType = transactionType;
     }
 
-    public LocalDateTime getTransactionDate() {
+    public Timestamp getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(LocalDateTime transactionDate) {
+    public void setTransactionDate(Timestamp transactionDate) {
         this.transactionDate = transactionDate;
     }
 
@@ -105,11 +89,11 @@ public class Transaction {
         this.description = description;
     }
 
-    public Long getExchangeId() {
-        return exchangeId;
+    public ExchangeRate getExchangeRate() {
+        return exchangeRate;
     }
 
-    public void setExchangeId(Long exchangeId) {
-        this.exchangeId = exchangeId;
+    public void setExchangeRate(ExchangeRate exchangeRate) {
+        this.exchangeRate = exchangeRate;
     }
 }

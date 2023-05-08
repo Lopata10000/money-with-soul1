@@ -1,53 +1,46 @@
 package com.fanta.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.security.Timestamp;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+@Table(name = "planning_costs")
 public class PlanningCost {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "planning_cost_id")
     private Long planningCostId;
-    private Long userId;
-    private Long costCategoryId;
-    private LocalDateTime planningCostDate;
-    private Long budgetId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cost_category_id")
+    private CostCategory costCategory;
+
+    @Column(name = "planning_cost_date")
+    private Timestamp planningCostDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "budget_id")
+    private Budget budget;
+
+    @Column(name = "planned_amount")
     private BigDecimal plannedAmount;
 
-    public static class Builder {
-        private final PlanningCost planningCost = new PlanningCost();
-
-        public Builder planningCostId(Long planningCostId) {
-            planningCost.setPlanningCostId(planningCostId);
-            return this;
-        }
-
-        public Builder userId(Long userId) {
-            planningCost.setUserId(userId);
-            return this;
-        }
-
-        public Builder costCategoryId(Long costCategoryId) {
-            planningCost.setCostCategoryId(costCategoryId);
-            return this;
-        }
-
-        public Builder planningCostDate(LocalDateTime planningCostDate) {
-            planningCost.setPlanningCostDate(planningCostDate);
-            return this;
-        }
-
-        public Builder budgetId(Long budgetId) {
-            planningCost.setBudgetId(budgetId);
-            return this;
-        }
-
-        public Builder plannedAmount(BigDecimal plannedAmount) {
-            planningCost.setPlannedAmount(plannedAmount);
-            return this;
-        }
-
-        public PlanningCost build() {
-            return planningCost;
-        }
-    }
+    // getters and setters
 
     public Long getPlanningCostId() {
         return planningCostId;
@@ -57,36 +50,36 @@ public class PlanningCost {
         this.planningCostId = planningCostId;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getCostCategoryId() {
-        return costCategoryId;
+    public CostCategory getCostCategory() {
+        return costCategory;
     }
 
-    public void setCostCategoryId(Long costCategoryId) {
-        this.costCategoryId = costCategoryId;
+    public void setCostCategory(CostCategory costCategory) {
+        this.costCategory = costCategory;
     }
 
-    public LocalDateTime getPlanningCostDate() {
+    public Timestamp getPlanningCostDate() {
         return planningCostDate;
     }
 
-    public void setPlanningCostDate(LocalDateTime planningCostDate) {
+    public void setPlanningCostDate(Timestamp planningCostDate) {
         this.planningCostDate = planningCostDate;
     }
 
-    public Long getBudgetId() {
-        return budgetId;
+    public Budget getBudget() {
+        return budget;
     }
 
-    public void setBudgetId(Long budgetId) {
-        this.budgetId = budgetId;
+    public void setBudget(Budget budget) {
+        this.budget = budget;
     }
 
     public BigDecimal getPlannedAmount() {
@@ -96,6 +89,5 @@ public class PlanningCost {
     public void setPlannedAmount(BigDecimal plannedAmount) {
         this.plannedAmount = plannedAmount;
     }
-
-    // Getters and setters
 }
+

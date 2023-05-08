@@ -1,26 +1,22 @@
 package com.fanta.entity;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+@Table(name = "cost_categories")
 public class CostCategory {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cost_category_id")
     private Long costCategoryId;
+
+    @Column(name = "cost_category_name")
     private String costCategoryName;
-
-    public static class Builder {
-        private final CostCategory costCategory = new CostCategory();
-
-        public Builder costCategoryId(Long costCategoryId) {
-            costCategory.setCostCategoryId(costCategoryId);
-            return this;
-        }
-
-        public Builder costCategoryName(String costCategoryName) {
-            costCategory.setCostCategoryName(costCategoryName);
-            return this;
-        }
-
-        public CostCategory build() {
-            return costCategory;
-        }
-    }
 
     public Long getCostCategoryId() {
         return costCategoryId;
