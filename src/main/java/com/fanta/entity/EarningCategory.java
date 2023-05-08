@@ -1,26 +1,21 @@
 package com.fanta.entity;
-
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
+@Table(name = "earning_categories")
 public class EarningCategory {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "earning_category_id")
     private Long earningCategoryId;
+
+    @Column(name = "earning_category_name")
     private String earningCategoryName;
-
-    public static class Builder {
-        private final EarningCategory earningCategory = new EarningCategory();
-
-        public Builder earningCategoryId(Long earningCategoryId) {
-            earningCategory.setEarningCategoryId(earningCategoryId);
-            return this;
-        }
-
-        public Builder earningCategoryName(String earningCategoryName) {
-            earningCategory.setEarningCategoryName(earningCategoryName);
-            return this;
-        }
-
-        public EarningCategory build() {
-            return earningCategory;
-        }
-    }
 
     public Long getEarningCategoryId() {
         return earningCategoryId;

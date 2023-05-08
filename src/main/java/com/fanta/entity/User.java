@@ -1,58 +1,40 @@
 package com.fanta.entity;
 
-import java.time.LocalDateTime;
+import java.security.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long userId;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password_hash")
     private String passwordHash;
-    private LocalDateTime registeredAt;
+
+    @Column(name = "registered_at")
+    private Timestamp registeredAt;
+
+    @Column(name = "user_status")
     private String userStatus;
-
-    public static class Builder {
-        private final User user = new User();
-
-        public Builder userId(Long userId) {
-            user.setUserId(userId);
-            return this;
-        }
-
-        public Builder firstName(String firstName) {
-            user.setFirstName(firstName);
-            return this;
-        }
-
-        public Builder lastName(String lastName) {
-            user.setLastName(lastName);
-            return this;
-        }
-
-        public Builder email(String email) {
-            user.setEmail(email);
-            return this;
-        }
-
-        public Builder passwordHash(String passwordHash) {
-            user.setPasswordHash(passwordHash);
-            return this;
-        }
-
-        public Builder registeredAt(LocalDateTime registeredAt) {
-            user.setRegisteredAt(registeredAt);
-            return this;
-        }
-
-        public Builder userStatus(String userStatus) {
-            user.setUserStatus(userStatus);
-            return this;
-        }
-
-        public User build() {
-            return user;
-        }
-    }
 
     public Long getUserId() {
         return userId;
@@ -94,11 +76,11 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public LocalDateTime getRegisteredAt() {
+    public Timestamp getRegisteredAt() {
         return registeredAt;
     }
 
-    public void setRegisteredAt(LocalDateTime registeredAt) {
+    public void setRegisteredAt(Timestamp registeredAt) {
         this.registeredAt = registeredAt;
     }
 

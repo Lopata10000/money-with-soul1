@@ -2,67 +2,57 @@ package com.fanta.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+@Entity
+@Table(name = "budgets")
 public class Budget {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "budget_id")
     private Long budgetId;
-    private Long userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "start_date")
     private LocalDate startDate;
+
+    @Column(name = "end_date")
     private LocalDate endDate;
+
+    @Column(name = "amount")
     private BigDecimal amount;
 
     public Long getBudgetId() {
         return budgetId;
     }
 
-    public static class Builder {
-        private final Budget budget = new Budget();
-
-        public Builder budgetId(Long budgetId) {
-            budget.setBudgetId(budgetId);
-            return this;
-        }
-
-        public Builder userId(Long userId) {
-            budget.setUserId(userId);
-            return this;
-        }
-
-        public Builder name(String name) {
-            budget.setName(name);
-            return this;
-        }
-
-        public Builder startDate(LocalDate startDate) {
-            budget.setStartDate(startDate);
-            return this;
-        }
-
-        public Builder endDate(LocalDate endDate) {
-            budget.setEndDate(endDate);
-            return this;
-        }
-
-        public Builder amount(BigDecimal amount) {
-            budget.setAmount(amount);
-            return this;
-        }
-
-        public Budget build() {
-            return budget;
-        }
-    }
-
     public void setBudgetId(Long budgetId) {
         this.budgetId = budgetId;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getName() {
